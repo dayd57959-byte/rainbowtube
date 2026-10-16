@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RainbowTube 🌈</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f8f5ff;
+  color: #28213b;
+}
+header {
+  padding: 18px;
+  background: linear-gradient(90deg, #ff595e, #ffca3a, #8ac926, #1982c4, #6a4c93);
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+}
+nav {
+  display: flex;
+  gap: 18px;
+  padding: 14px;
+  background: white;
+  overflow-x: auto;
+}
+nav a { color: #573b8a; text-decoration: none; font-weight: bold; }
+.search { padding: 16px; }
+input {
+  padding: 12px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 22px;
+  font-size: 16px;
+}
+h2 { padding: 0 16px; }
+.videos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+.card {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px #0001;
+}
+.thumb {
+  height: 145px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #ffadad, #ffd6a5, #fdffb6, #caffbf, #9bf6ff, #bdb2ff);
+  font-size: 48px;
+}
+.card h3, .card p { margin: 12px; }
+button {
+  border: 0;
+  border-radius: 20px;
+  background: #7546c8;
+  color: white;
+  padding: 10px 16px;
+  margin: 0 12px 14px;
+  font-size: 15px;
+}
+footer { text-align: center; padding: 25px; color: #6b617c; }
+</style>
+</head>
+<body>
+<header>🌈 RainbowTube</header>
+
+<nav>
+<a href="#">🏠 Home</a>
+<a href="#videos">🎬 Videos</a>
+<a href="#categories">🌟 Categories</a>
+<a href="#about">ℹ️ About</a>
+</nav>
+
+<div class="search">
+<input id="search" placeholder="🔎 Search RainbowTube videos..." oninput="searchVideos()">
+</div>
+
+<h2>🌈 Welcome to RainbowTube!</h2>
+<p style="padding:0 16px">Discover videos, music, gaming, animation and more!</p>
+
+<h2 id="categories">🎨 Explore Categories</h2>
+<div class="search">
+<button onclick="category('All')">All</button>
+<button onclick="category('Music')">🎵 Music</button>
+<button onclick="category('Gaming')">🎮 Gaming</button>
+<button onclick="category('Animation')">🦄 Animation</button>
+</div>
+
+<h2 id="videos">▶️ Discover Videos</h2>
+<div class="videos" id="videoList">
+<div class="card" data-category="Music">
+<div class="thumb">🎵🌈</div>
+<h3>Rainbow Music</h3>
+<p>Music and relaxing sounds</p>
+<button onclick="playDemo('Rainbow Music')">▶ Play demo</button>
+</div>
+
+<div class="card" data-category="Gaming">
+<div class="thumb">🎮✨</div>
+<h3>Gaming Zone</h3>
+<p>Games and adventures</p>
+<button onclick="playDemo('Gaming Zone')">▶ Play demo</button>
+</div>
+
+<div class="card" data-category="Animation">
+<div class="thumb">🦄💜</div>
+<h3>Animation World</h3>
+<p>Cartoons and creativity</p>
+<button onclick="playDemo('Animation World')">▶ Play demo</button>
+</div>
+</div>
+
+<p id="message" style="padding:16px"></p>
+
+<footer id="about">
+🌈 RainbowTube — A colorful place to discover videos!<br>
+This is the first prototype. Real accounts and video uploads are not connected yet.
+</footer>
+
+<script>
+function searchVideos() {
+  const q = document.getElementById('search').value.toLowerCase();
+  document.querySelectorAll('.card').forEach(card => {
+    card.style.display = card.innerText.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+function category(name) {
+  document.querySelectorAll('.card').forEach(card => {
+    card.style.display = name === 'All' || card.dataset.category === name ? '' : 'none';
+  });
+}
+function playDemo(name) {
+  document.getElementById('message').textContent =
+    name + ': This is a demo listing. Real video playback will be added later.';
+}
+</script>
+</body>
+</html>
